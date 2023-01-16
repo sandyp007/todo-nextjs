@@ -3,9 +3,12 @@ import { createContext, useState } from "react"
 
 const taskContext = createContext()
 const TaskProvider = ({ children }) => {
-    const localComments = JSON.parse(localStorage.getItem('dbTasks'))
+    let localComments
+    if (typeof window !== "undefined") {
+        localComments = JSON.parse(localStorage.getItem('dbTasks'))
+    }
 
-    const [dbTasks, setDbTasks] = useState(localComments === null || localComments === 'undefined' ? [] : localComments)
+    const [dbTasks, setDbTasks] = useState(localComments === null || localComments === undefined ? [] : localComments)
 
 
     console.info(dbTasks)
@@ -17,9 +20,11 @@ const TaskProvider = ({ children }) => {
         }
         setDbTasks([...dbTasks, newTask])
     }
-    localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
+    if (typeof window !== "undefined") {
+        localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
+    }
 
-
+    console.info(dbTasks)
     const data = { dbTasks, addTask }
     return (<taskContext.Provider value={data}>
         {children}
