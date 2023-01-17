@@ -27,7 +27,7 @@ const InputTask = ({ isTask = true, children, id }) => {
 
     return (
         <>
-            {modalTask && <ModalDeleteTask setModalTask={setModalTask} id={id} />}
+            {modalTask && <ModalDeleteTask setModalTask={setModalTask} id={id} type='one' />}
 
             {isTask
                 ?
