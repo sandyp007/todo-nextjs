@@ -4,17 +4,19 @@ import ThemeContext from '../context/themeConttext'
 import cross from './../../assets/icon-cross.svg'
 import Image from 'next/image'
 import taskContext from '../context/taskContext'
+import ModalDeleteTask from './ModalDeleteTask'
 
-const InputTask = ({ isTask = true, children }) => {
+const InputTask = ({ isTask = true, children, id }) => {
 
-    const { addTask } = useContext(taskContext)
+    const { handleAddTask, handlDeleteTask } = useContext(taskContext)
     const [isCheck, setIsCheck] = useState(false)
     const [task, setTask] = useState("")
-    console.info(isTask)
+    const [modalTask, setModalTask] = useState(false)
+    //  console.info(isTask)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        addTask(task)
+        handleAddTask(task)
         setTask('')
     }
 
@@ -25,6 +27,8 @@ const InputTask = ({ isTask = true, children }) => {
 
     return (
         <>
+            {modalTask && <ModalDeleteTask setModalTask={setModalTask} id={id} />}
+
             {isTask
                 ?
                 // <div className={`${DarkTheme ? 'border-white' : 'border-[#25273c]'} border-b-[1px]`}>
@@ -34,14 +38,13 @@ const InputTask = ({ isTask = true, children }) => {
                         <span className='flex h-auto items-center w-[calc(100%-3.25rem)]'>
                             {children}
                         </span>
-                        <Image className='md:hidden md:group-hover:block md:group-hover:cursor-pointer mr-4' src={cross} width={20} height={20} alt='delete task' />
+                        <Image id={id} onClick={() => setModalTask(true)} className='md:hidden md:group-hover:block md:group-hover:cursor-pointer mr-4' src={cross} width={20} height={20} alt='delete task' />
                     </div>
                 </div>                // </div>
                 :
                 <form className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-full flex items-center justify-between rounded-md overflow-hidden transition-all duration-300`} onSubmit={handleSubmit}>
-                    < input type='button' className={`bg-white w-6 h-6 rounded-full inline-block ml-4 border-gray-400 border-[1px] transition-all duration-300`} disabled />
-                    <input onChange={(e) => handleChange(e)} type="text" className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-[calc(100%-3rem)] py-4 px-3 text-xs outline-none transition-all duration-300`} value={task} placeholder='Creste a new task...' />
-
+                    <input type='button' className={`bg-white w-6 h-6 rounded-full inline-block ml-4 border-gray-400 border-[1px] transition-all duration-300`} disabled />
+                    <input onChange={(e) => handleChange(e)} type="text" className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-[calc(100%-3rem)] py-4 px-3 text-xs outline-none transition-all duration-300`} value={task} placeholder='Create a new task...' />
                 </form>
             }
             {/* <input onChange={(e) => handleChange(e)} onClick={() => setTask('')} type="text" className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-[calc(100%-3rem)] py-4 px-3 text-xs outline-none transition-all duration-300`} value={task} /> */}

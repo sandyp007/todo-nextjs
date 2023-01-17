@@ -1,18 +1,19 @@
 'use client'
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 
 const taskContext = createContext()
 const TaskProvider = ({ children }) => {
+
     let localComments
     if (typeof window !== "undefined") {
+        // Perform localStorage action
+        //localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
         localComments = JSON.parse(localStorage.getItem('dbTasks'))
     }
 
     const [dbTasks, setDbTasks] = useState(localComments === null || localComments === undefined ? [] : localComments)
 
-
-    console.info(dbTasks)
-    const addTask = (task) => {
+    const handleAddTask = (task) => {
         const newTask = {
             id: crypto.randomUUID(),
             content: task,
@@ -20,12 +21,21 @@ const TaskProvider = ({ children }) => {
         }
         setDbTasks([...dbTasks, newTask])
     }
+
+    const handleDeleteTask = (id) => {
+        console.info(id)
+
+        const filterID = dbTasks.filter(el => el.id !== id)
+
+        setDbTasks(filterID)
+    }
+
     if (typeof window !== "undefined") {
+        // Perform localStorage action
         localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
     }
 
-    console.info(dbTasks)
-    const data = { dbTasks, addTask }
+    const data = { dbTasks, handleAddTask, handleDeleteTask }
     return (<taskContext.Provider value={data}>
         {children}
     </taskContext.Provider>)
