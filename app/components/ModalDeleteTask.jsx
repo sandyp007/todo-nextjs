@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import taskContext from '../context/taskContext'
 import ThemeContext from '../context/themeConttext'
 
-const ModalDeleteTask = ({ setModalTask, id, type }) => {
+const ModalDeleteTask = ({ setModalTask, id, type, setModal }) => {
     const { handleDeleteTask } = useContext(taskContext)
     const { DarkTheme } = useContext(ThemeContext)
     return (
@@ -11,16 +11,20 @@ const ModalDeleteTask = ({ setModalTask, id, type }) => {
             <div className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} absolute rounded-2xl flex flex-col items-center justify-center bg-white p-7 w-[95%]`}>
                 <h1 className='text-3xl font-bold'>{type === 'one' ? 'Delete Task' : 'Delete All Task'}</h1>
                 <p>
-                    Are you sure you want to delete this taks? This will remove the
-                    task and can't be undone.
+                    {type === 'one' ? "Are you sure you want to delete this taks? This will remove the task and can't be undone." : "Are you sure you want to delete all taks? This will remove the task and can't be undone."}
                 </p>
                 <div className='flex justify-between w-full gap-3 mt-3'>
-                    <button className='text-base font-bold p-3 rounded-md cursor-pointer w-2/3 bg-gray-600 text-white' onClick={() => setModalTask(false)}>
+                    <button className='text-base font-bold p-3 rounded-md cursor-pointer w-2/3 bg-gray-600 text-white' onClick={() => !id ? setModal(false) : setModalTask(false)}>
                         NO, CANCEL
                     </button>
                     <button
                         className='text-base font-bold p-3 rounded-md cursor-pointer w-2/3 bg-red-600 text-white'
-                        onClick={() => handleDeleteTask(id)}
+                        onClick={() => {
+
+                            !id ? setModal(false) : setModalTask(false)
+                            handleDeleteTask(id, type)
+                        }
+                        }
                     >
                         YES, DELETE
                     </button>

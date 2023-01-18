@@ -24,7 +24,6 @@ const ThemeProvider = ({ children }) => {
         }
     }
     const data = { DarkTheme, handleTheme }
-    console.info(DarkTheme)
     return <ThemeContext.Provider value={data}>
         {children}
     </ThemeContext.Provider>

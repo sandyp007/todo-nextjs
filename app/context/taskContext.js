@@ -34,35 +34,47 @@ const TaskProvider = ({ children }) => {
         setDbTasks([...dbTasks, newTask])
     }
 
-    const handleDeleteTask = (id) => {
-        // console.info(id)
+    const handleDeleteTask = (id, type) => {
 
-        const filterID = dbTasks.filter(el => el.id !== id)
+        type === 'all' ? setDbTasks(dbTasks.filter(el => el.isDone !== true)) : setDbTasks(dbTasks.filter(el => el.id !== id))
+        // const filterID = dbTasks.filter(el => el.id !== id)
 
-        setDbTasks(filterID)
+        // setDbTasks(filterID)
     }
 
 
     const handleUpdateTask = (id, status, type) => {
 
-        // console.info(id)
         if (type === 'done') {
             let update = dbTasks.map(el => el.id === id ? { ...el, isDone: status } : el)
 
-            // console.info(update)
             setDbTasks(update)
         }
 
 
     }
+    const getFilter = () => {
+        if (current === 'all' || current === '') {
+            return dbTasks
+        }
 
+        if (current === 'active') {
+            return pendingTask
+        }
+
+        if (current === 'completed') {
+            return tasksDone
+        }
+    }
+
+    const filteredData = getFilter()
 
     if (typeof window !== "undefined") {
         // Perform localStorage action
         localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
     }
 
-    const data = { dbTasks, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent }
+    const data = { dbTasks, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData }
     return (<taskContext.Provider value={data}>
         {children}
     </taskContext.Provider>)

@@ -12,8 +12,6 @@ const InputTask = ({ isTask = true, children, id, isDone }) => {
     const [isCheck, setIsCheck] = useState(isDone)
     const [task, setTask] = useState("")
     const [modalTask, setModalTask] = useState(false)
-    //console.info(isCheck)
-
     const handleSubmit = (e) => {
         e.preventDefault()
         handleAddTask(task)
@@ -36,14 +34,13 @@ const InputTask = ({ isTask = true, children, id, isDone }) => {
 
             {isTask
                 ?
-                // <div className={`${DarkTheme ? 'border-white' : 'border-[#25273c]'} border-b-[1px]`}>
                 <div className={`${DarkTheme ? 'bg-[#25273C] text-white outline-white' : 'bg-gray-100 text-[#25273c] outline-[#25273c]'} w-full group outline-2 outline-offset-2 flex items-center  justify-between animate-tasksAnimate py-4`}>
                     <input onClick={() => setIsCheck(!isCheck)} type='button' className={`${isCheck ? 'bg-blue-500 border-white' : 'bg-white border-[#25273c]'} border-b-[1px] w-6 h-6 rounded-full inline-block ml-4 mr-4 border-gray-400 border-[1px] transition-all duration-300`} />
-                    <p className={`${isCheck ? 'text-gray-400 line-through' : 'text-white'} block break-all text-sm w-[calc(100%-7rem)]`}>
+                    <p className={`${isCheck ? 'text-gray-400 line-through' : null} block break-all text-sm w-[calc(100%-7rem)]`}>
                         {children}
                     </p>
                     <Image id={id} onClick={() => setModalTask(true)} className='md:hidden md:group-hover:block md:group-hover:cursor-pointer ml-4 mr-4' src={cross} width={20} height={20} alt='delete task' />
-                </div >                // </div>
+                </div >
                 :
                 <form className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-full flex items-center justify-between rounded-md overflow-hidden transition-all duration-300`} onSubmit={handleSubmit}>
                     <input type='button' className={`bg-white w-6 h-6 rounded-full inline-block ml-4 border-gray-400 border-[1px] transition-all duration-300`} disabled />
