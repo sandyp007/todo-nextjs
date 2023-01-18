@@ -12,7 +12,7 @@ const ModalDeleteTask = ({ setModalTask, id, type }) => {
                 <h1 className='text-3xl font-bold'>{type === 'one' ? 'Delete Task' : 'Delete All Task'}</h1>
                 <p>
                     Are you sure you want to delete this taks? This will remove the
-                    comment and can't be undone.
+                    task and can't be undone.
                 </p>
                 <div className='flex justify-between w-full gap-3 mt-3'>
                     <button className='text-base font-bold p-3 rounded-md cursor-pointer w-2/3 bg-gray-600 text-white' onClick={() => setModalTask(false)}>

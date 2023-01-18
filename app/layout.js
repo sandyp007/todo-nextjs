@@ -9,7 +9,7 @@ export default function RootLayout({ children }) {
       <head />
       <ThemeProvider>
         <TaskProvider>
-          <body>
+          <body className="h-full">
             {/* <body className={DarkTheme ? 'bg-[#161722] text-white' : 'bg-white text-[#161722]'} > */}
             {children}
           </body>
