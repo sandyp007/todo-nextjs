@@ -53,7 +53,7 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
                     </p>}
                     <p onClick={(e) => {
                         setTask(content)
-                        setIsEdit(true)
+                        setIsEdit(!isEdit)
                     }}>Editar</p>
                     <Image id={id} onClick={() => setModalTask(true)} className='md:hidden md:group-hover:block md:group-hover:cursor-pointer ml-4 mr-4' src={cross} width={20} height={20} alt='delete task' />
                 </div >
