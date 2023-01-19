@@ -6,16 +6,26 @@ import Image from 'next/image'
 import taskContext from '../context/taskContext'
 import ModalDeleteTask from './ModalDeleteTask'
 
-const InputTask = ({ isTask = true, children, id, isDone }) => {
+const InputTask = ({ isTask = true, children, id, isDone, content }) => {
 
     const { handleAddTask, handleUpdateTask } = useContext(taskContext)
     const [isCheck, setIsCheck] = useState(isDone)
     const [task, setTask] = useState("")
     const [modalTask, setModalTask] = useState(false)
+    const [isEdit, setIsEdit] = useState(false)
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        handleAddTask(task)
-        setTask('')
+
+        if (isEdit) {
+            console.info('vas a editar')
+            setIsEdit(false)
+            setIsCheck(false)
+            handleUpdateTask(id, isCheck, 'edit', task)
+        } else {
+            handleAddTask(task)
+            setTask('')
+        }
     }
 
     const handleChange = (e) => {
@@ -23,7 +33,7 @@ const InputTask = ({ isTask = true, children, id, isDone }) => {
     }
 
     useEffect(() => {
-        handleUpdateTask(id, isCheck, 'done')
+        handleUpdateTask(id, isCheck, 'done', content)
     }, [isCheck])
 
     const { DarkTheme } = useContext(ThemeContext)
@@ -36,9 +46,15 @@ const InputTask = ({ isTask = true, children, id, isDone }) => {
                 ?
                 <div className={`${DarkTheme ? 'bg-[#25273C] text-white outline-white' : 'bg-gray-100 text-[#25273c] outline-[#25273c]'} w-full group outline-2 outline-offset-2 flex items-center  justify-between animate-tasksAnimate py-4`}>
                     <input onClick={() => setIsCheck(!isCheck)} type='button' className={`${isCheck ? 'bg-blue-500 border-white' : 'bg-white border-[#25273c]'} border-b-[1px] w-6 h-6 rounded-full inline-block ml-4 mr-4 border-gray-400 border-[1px] transition-all duration-300`} />
-                    <p className={`${isCheck ? 'text-gray-400 line-through' : null} block break-all text-sm w-[calc(100%-7rem)]`}>
+                    {isEdit ? <form onSubmit={handleSubmit}>
+                        <input onChange={e => handleChange(e)} type="text" value={task} />
+                    </form> : <p className={`${isCheck ? 'text-gray-400 line-through' : null} block break-all text-sm w-[calc(100%-7rem)]`}>
                         {children}
-                    </p>
+                    </p>}
+                    <p onClick={(e) => {
+                        setTask(content)
+                        setIsEdit(true)
+                    }}>Editar</p>
                     <Image id={id} onClick={() => setModalTask(true)} className='md:hidden md:group-hover:block md:group-hover:cursor-pointer ml-4 mr-4' src={cross} width={20} height={20} alt='delete task' />
                 </div >
                 :

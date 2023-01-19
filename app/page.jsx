@@ -18,7 +18,7 @@ const HomePage = () => {
 
             <div className={`${DarkTheme ? 'bg-[#25273c] text-white outline-white' : 'bg-gray-100 text-[#25273c] outline-[#25273c]'} outline-1 outline-offset-1 min-h-[3rem] w-[90%] m-auto -mt-6 overflow-hidden rounded-md flex items-center justify-center  divide-y flex-col`}>
                 {dbTasks && filteredData.length > 0
-                    ? filteredData.map(tsk => <InputTask key={tsk.id} id={tsk.id} isDone={tsk.isDone}>
+                    ? filteredData.map(tsk => <InputTask key={tsk.id} id={tsk.id} isDone={tsk.isDone} content={tsk.content}>
                         {tsk.content}
                     </InputTask>)
                     : 'No tasks, add a new task or complete task :D'}

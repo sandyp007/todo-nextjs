@@ -43,12 +43,16 @@ const TaskProvider = ({ children }) => {
     }
 
 
-    const handleUpdateTask = (id, status, type) => {
+    const handleUpdateTask = (id, status, type, content) => {
 
         if (type === 'done') {
             let update = dbTasks.map(el => el.id === id ? { ...el, isDone: status } : el)
 
             setDbTasks(update)
+        } else {
+            let updateText = dbTasks.map(el => el.id === id ? { ...el, content: content, isDone: false } : el)
+
+            setDbTasks(updateText)
         }
 
 
