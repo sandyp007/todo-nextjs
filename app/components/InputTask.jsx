@@ -3,9 +3,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import ThemeContext from '../context/themeConttext'
 import cross from './../../assets/icon-cross.svg'
 import Image from 'next/image'
+import edit from './../../assets/edit-svgrepo-com.svg'
 import taskContext from '../context/taskContext'
 import ModalDeleteTask from './ModalDeleteTask'
-
+import { AiOutlineClose, AiOutlineCheck } from 'react-icons/ai'
+import { MdModeEditOutline } from 'react-icons/md'
 const InputTask = ({ isTask = true, children, id, isDone, content }) => {
 
     const { handleAddTask, handleUpdateTask } = useContext(taskContext)
@@ -46,16 +48,16 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
                 ?
                 <div className={`${DarkTheme ? 'bg-[#25273C] text-white outline-white' : 'bg-gray-100 text-[#25273c] outline-[#25273c]'} w-full group outline-2 outline-offset-2 flex items-center  justify-between animate-tasksAnimate py-4`}>
                     <input onClick={() => setIsCheck(!isCheck)} type='button' className={`${isCheck ? 'bg-blue-500 border-white' : 'bg-white border-[#25273c]'} border-b-[1px] w-6 h-6 rounded-full inline-block ml-4 mr-4 border-gray-400 border-[1px] transition-all duration-300`} />
-                    {isEdit ? <form onSubmit={handleSubmit}>
-                        <input onChange={e => handleChange(e)} type="text" value={task} />
-                    </form> : <p className={`${isCheck ? 'text-gray-400 line-through' : null} block break-all text-sm w-[calc(100%-7rem)]`}>
+                    {isEdit ? <form className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} `} onSubmit={handleSubmit}>
+                        <input autoFocus className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} break-all`} onChange={e => handleChange(e)} type="text" value={task} />
+                    </form> : <p className={`${isCheck ? 'text-gray-400 line-through' : ''} text-justify block break-all text-sm w-[calc(100%-7rem)]`}>
                         {children}
                     </p>}
-                    <p onClick={(e) => {
+                    {isEdit ? <AiOutlineCheck onClick={handleSubmit} width={20} height={20} alt='edit task button' /> : <MdModeEditOutline width={20} height={20} alt='edit task button' onClick={() => {
+                        setIsEdit(true)
                         setTask(content)
-                        setIsEdit(!isEdit)
-                    }}>Editar</p>
-                    <Image id={id} onClick={() => setModalTask(true)} className='md:hidden md:group-hover:block md:group-hover:cursor-pointer ml-4 mr-4' src={cross} width={20} height={20} alt='delete task' />
+                    }} />}
+                    <AiOutlineClose id={id} onClick={() => setModalTask(true)} className='md:hidden md:group-hover:block md:group-hover:cursor-pointer ml-4 mr-4' width={20} height={20} alt='delete task' />
                 </div >
                 :
                 <form className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-full flex items-center justify-between rounded-md overflow-hidden transition-all duration-300`} onSubmit={handleSubmit}>
