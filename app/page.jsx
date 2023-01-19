@@ -21,7 +21,7 @@ const HomePage = () => {
                     ? filteredData.map(tsk => <InputTask key={tsk.id} id={tsk.id} isDone={tsk.isDone} content={tsk.content}>
                         {tsk.content}
                     </InputTask>)
-                    : 'No tasks, add a new task or complete task :D'}
+                    : <p className='py-4'>{`${current === 'completed' ? 'complete a task ✔️' : 'Add a new task 🖋️'}`}</p>}
                 <div className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-gray-100 text-[#25273c]'} w-full flex items-center justify-between py-4 pl-4 pr-4 bg-transparent  md:py-5`}>
                     {current === 'all' ? <><p className={`${DarkTheme ? 'text-gray-600' : 'text-text-light'} ${DarkTheme ? 'md:hover:text-gray-200' : 'md:hover:text-gray-800'} cursor-pointer text-sm`}> All Items</p> </> : null}
                     {current === 'active' ? <><p className={`${DarkTheme ? 'text-gray-600' : 'text-text-light'} ${DarkTheme ? 'md:hover:text-gray-200' : 'md:hover:text-gray-800'} cursor-pointer text-sm`}>{pendingTask.length} items left</p> </> : null}
@@ -31,10 +31,10 @@ const HomePage = () => {
                         <p onClick={() => setCurrent('active')} className={`${current === 'active' ? 'text-blue-500' : 'text-text-light'} ${DarkTheme && current === 'active' && 'text-blue-500'} ${DarkTheme ? 'md:hover:text-gray-200' : 'md:hover:text-gray-800'} ml-4 mr-4 cursor-pointer`}>Active</p>
                         <p onClick={() => setCurrent('completed')} className={`${current === 'completed' ? 'text-blue-500' : 'text-text-light'} ${DarkTheme && current === 'completed' && 'text-blue-500'} ${DarkTheme ? 'md:hover:text-gray-200' : 'md:hover:text-gray-800'} cursor-pointer`}>Completed</p>
                     </div>
-                    {tasksDone.length > 0 && <p className={`${DarkTheme ? 'text-gray-600' : 'text-text-light'} ${DarkTheme ? 'md:hover:text-gray-200' : 'md:hover:text-gray-800'} cursor-pointer text-sm`} onClick={() => setModal(!modal)}>Clear Completed</p>}
+                    <p className={`${DarkTheme ? 'text-gray-600' : 'text-text-light'} ${DarkTheme ? 'md:hover:text-gray-200' : 'md:hover:text-gray-800'} ${tasksDone.length > 0 ? "opacity-100" : "opacity-0"} cursor-pointer text-sm`} onClick={() => setModal(!modal)}>Clear Completed</p>
                 </div>
             </div>
-            <div className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-gray-100 text-[#25273c]'} w-[90%] max-w-85 flex mt-4 py-4 items-center justify-center m-auto rounded-md  md:max-w-2xl  mb-8 md:py-5 lg:hidden`}>
+            <div className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-gray-100 text-[#25273c]'} w-[90%] flex mt-4 py-4 items-center justify-center m-auto rounded-md  mb-8 md:py-5 lg:hidden`}>
                 <p onClick={() => setCurrent('all')} className={`${current === 'all' ? 'text-blue-500' : 'text-text-light'} ${DarkTheme && current === 'all' && 'text-blue-500'} cursor-pointer text-sm`}>All</p>
                 <p onClick={() => setCurrent('active')} className={`${current === 'active' ? 'text-blue-500' : 'text-text-light'} ${DarkTheme && current === 'active' && 'text-blue-500'} ml-4 mr-4 cursor-pointer text-sm`}>Active</p>
                 <p onClick={() => setCurrent('completed')} className={`${current === 'completed' ? 'text-blue-500' : 'text-text-light'} ${DarkTheme && current === 'completed' && 'text-blue-500'} cursor-pointer text-sm`}>Completed</p>
