@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { TaskProvider } from "./context/taskContext";
 import { ThemeProvider } from "./context/themeConttext";
+import ThemeScriptTag from "./theme-script";
 
 
 export default function RootLayout({ children }) {
@@ -12,6 +13,8 @@ export default function RootLayout({ children }) {
       <TaskProvider>
         {/* <body className="h-full"> */}
         <body>
+          <ThemeScriptTag />
+
           {children}
         </body>
       </TaskProvider>
