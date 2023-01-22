@@ -4,17 +4,18 @@ import { ThemeProvider } from "./context/themeConttext";
 
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="es">
       <head />
-      <ThemeProvider>
-        <TaskProvider>
-          <body className="h-full">
-            {/* <body className={DarkTheme ? 'bg-[#161722] text-white' : 'bg-white text-[#161722]'} > */}
-            {children}
-          </body>
-        </TaskProvider>
-      </ThemeProvider>
+      {/* <ThemeProvider> */}
+      <TaskProvider>
+        {/* <body className="h-full"> */}
+        <body>
+          {children}
+        </body>
+      </TaskProvider>
+      {/* </ThemeProvider> */}
     </html>
   )
 }

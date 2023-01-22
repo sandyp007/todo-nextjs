@@ -18,7 +18,7 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        if (task === '') return
         if (isEdit) {
             console.info('vas a editar')
             setIsEdit(false)
@@ -38,7 +38,7 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
         handleUpdateTask(id, isCheck, 'done', content)
     }, [isCheck])
 
-    const { DarkTheme } = useContext(ThemeContext)
+    // const { DarkTheme } = useContext(ThemeContext)
 
     return (
         <>
@@ -46,23 +46,32 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
 
             {isTask
                 ?
-                <div className={`${DarkTheme ? 'bg-[#25273C] text-white outline-white' : 'bg-gray-100 text-[#25273c] outline-[#25273c]'} w-full group outline-2 outline-offset-2 flex items-center  justify-between animate-tasksAnimate py-4`}>
+                // <div className={`${DarkTheme ? 'bg-[#25273C] text-white' : 'bg-gray-100 text-[#25273c]'} w-full group flex items-center transition-all duration-500 justify-between animate-tasksAnimate py-4`}>
+                <div className='dark:bg-[#25273C] dark:text-white bg-gray-100 text-[#25273c] w-full group flex items-center transition-all duration-500 justify-between animate-tasksAnimate py-4'>
                     <input onClick={() => setIsCheck(!isCheck)} type='button' className={`${isCheck ? 'bg-blue-500 border-white' : 'bg-white border-[#25273c]'} border-b-[1px] w-6 h-6 rounded-full inline-block ml-4 mr-4 border-gray-400 border-[1px] transition-all duration-300`} />
-                    {isEdit ? <form className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-[calc(100%-7rem)] `} onSubmit={handleSubmit}>
-                        <input autoFocus onBlur={() => setIsEdit(false)} className={`${DarkTheme ? 'bg-[#2f3041] text-white' : 'bg-white text-[#25273c]'} pr-2 outline-none break-all w-[calc(100%-7rem)]`} onChange={e => handleChange(e)} type="text" value={task} />
-                    </form> : <p className={`${isCheck ? 'text-gray-400 line-through' : ''} text-justify block break-all text-sm w-[calc(100%-7rem)]`}>
-                        {children}
-                    </p>}
-                    {isEdit ? <AiOutlineCheck onClick={handleSubmit} width={20} height={20} alt='edit task button' className='ml-2 md:group-hover:cursor-pointer' /> : <MdModeEditOutline width={20} height={20} alt='edit task button' className='ml-2 md:group-hover:cursor-pointer' onClick={() => {
-                        setIsEdit(true)
-                        setTask(content)
-                    }} />}
+                    {isEdit
+                        // ? <form className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-[calc(100%-7rem)] text-sm`} onSubmit={handleSubmit}>
+                        ? <form className='dark:bg-[#25273c] dark:text-white g-white text-[#25273c] w-[calc(100%-7rem)] text-sm' onSubmit={handleSubmit}>
+                            {/* <input autoFocus onBlur={() => setIsEdit(false)} className={`${DarkTheme ? 'bg-[#2f3041] text-white' : 'bg-white text-[#25273c]'} text-sm pr-2 outline-none break-all w-[calc(100%-7rem)]`} onChange={e => handleChange(e)} type="text" value={task} /> */}
+                            <input autoFocus onBlur={() => setIsEdit(false)} className='dark:bg-[#2f3041] dark:text-white bg-white text-[#25273c] text-sm pr-2 outline-none break-all w-[calc(100%-7rem)]' onChange={e => handleChange(e)} type="text" value={task} />
+                        </form>
+                        : <p className={`${isCheck ? 'text-gray-400 line-through' : ''} text-justify block break-all text-sm w-[calc(100%-7rem)] `}>
+                            {children}
+                        </p>}
+                    {isEdit
+                        ? <AiOutlineCheck onClick={handleSubmit} width={20} height={20} alt='edit task button' className='ml-2 md:group-hover:cursor-pointer transition-all duration-500' />
+                        : <MdModeEditOutline width={20} height={20} alt='edit task button' className='ml-2 md:group-hover:cursor-pointer transition-all duration-500' onClick={() => {
+                            setIsEdit(true)
+                            setTask(content)
+                        }} />}
                     <AiOutlineClose id={id} onClick={() => setModalTask(true)} className='md:opacity-0 md:group-hover:opacity-100 md:group-hover:cursor-pointer ml-2 mr-4' width={20} height={20} alt='delete task' />
                 </div >
                 :
-                <form className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-full flex items-center justify-between rounded-md overflow-hidden transition-all duration-300`} onSubmit={handleSubmit}>
+                // <form className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-full flex items-center justify-between rounded-md overflow-hidden transition-all duration-300 animate-tasksAnimate`} onSubmit={handleSubmit}>
+                <form className='dark:bg-[#25273c] dark:text-white bg-white text-[#25273c] w-full flex items-center justify-between rounded-md overflow-hidden transition-all duration-300 animate-tasksAnimate' onSubmit={handleSubmit}>
                     <input type='button' className={`bg-white w-6 h-6 rounded-full inline-block ml-4 border-gray-400 border-[1px] transition-all duration-300`} disabled />
-                    <input onChange={(e) => handleChange(e)} type="text" onClick={() => setIsEdit(false)} className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-[calc(100%-3rem)] py-4 px-3 text-xs outline-none transition-all duration-300`} value={task} placeholder='Create a new task...' />
+                    {/* <input onChange={(e) => handleChange(e)} type="text" onClick={() => setIsEdit(false)} className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-[calc(100%-3rem)] py-4 px-3 text-xs outline-none transition-all duration-300`} value={task} placeholder='Create a new task...' /> */}
+                    <input onChange={(e) => handleChange(e)} type="text" onClick={() => setIsEdit(false)} className='dark:bg-[#25273c] dark:text-white bg-white text-[#25273c] w-[calc(100%-3rem)] py-4 px-3 text-xs outline-none transition-all duration-300' value={task} placeholder='Create a new task...' />
                 </form>
             }
         </>
