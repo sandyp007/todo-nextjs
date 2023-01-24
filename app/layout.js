@@ -12,9 +12,9 @@ export default function RootLayout({ children }) {
       {/* <ThemeProvider> */}
       <TaskProvider>
         {/* <body className="h-full"> */}
+        {/* <ThemeScriptTag /> */}
         <body>
-          <ThemeScriptTag />
-
+          <script src="./theme.js" strategy="beforeInteractive"></script>
           {children}
         </body>
       </TaskProvider>

@@ -8,26 +8,26 @@ import InputTask from './InputTask'
 const HeaderComponent = () => {
     const [darkTheme, setDarkTheme] = useState(false)
 
-    useEffect(() => {
-        if (localStorage.getItem("theme") === 'true') {
-            setDarkTheme(true)
-
-            document.documentElement.classList.add('dark')
-        } else {
-            setDarkTheme(false)
-            document.documentElement.classList.remove('dark')
-        }
-    }, [])
+    /*    useEffect(() => {
+            if (localStorage.getItem("theme") === 'true') {
+                setDarkTheme(true)
+    
+                document.documentElement.classList.add('dark')
+            } else {
+                setDarkTheme(false)
+                document.documentElement.classList.remove('dark')
+            }
+        }, [])*/
 
     const handleTheme = () => {
         if (darkTheme) {
             setDarkTheme(false)
-            document.documentElement.classList.remove('dark')
+            document.body.classList.remove('dark')
             localStorage.setItem('theme', false)
         } else {
             setDarkTheme(true)
             localStorage.setItem('theme', true)
-            document.documentElement.classList.add('dark')
+            document.body.classList.add('dark')
         }
     }
     return (
