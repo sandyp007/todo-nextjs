@@ -1,10 +1,12 @@
 'use client'
 import Image from 'next/image'
 import React, { useContext, useEffect, useState } from 'react'
+import taskContext from '../context/taskContext'
 import ThemeContext from '../context/themeConttext'
 import moon from './../../assets/icon-moon.svg'
 import sun from './../../assets/icon-sun.svg'
 import InputTask from './InputTask'
+import ModalTaskAdded from './ModalTaskAdded'
 const HeaderComponent = () => {
     const [darkTheme, setDarkTheme] = useState(false)
 
@@ -30,6 +32,8 @@ const HeaderComponent = () => {
             document.documentElement.classList.add('dark')
         }
     }
+
+    const { taskAdded } = useContext(taskContext)
     return (
         // <header className={`${DarkTheme ? 'bg-mobileDark md:bg-desktopDark' : ' bg-mobileLight md:bg-desktopLight'} bg-cover transition-all duration-500 bg-cover bg-no-repeat h-[30vh] w-full font-bold flex flex-col items-center`}>
         <header className='dark:bg-mobileDark dark:md:bg-desktopDark bg-mobileLight md:bg-desktopLight transition-all duration-500 bg-cover bg-no-repeat min-h-[30vh] w-full font-bold flex flex-col items-center' >
@@ -39,6 +43,14 @@ const HeaderComponent = () => {
                     <Image onClick={handleTheme} className='md:cursor-pointer' src={darkTheme ? sun : moon} width={30} height={20} alt='icon_moon_darkMode' />
                 </div >
                 <InputTask isTask={false} />
+                {taskAdded &&
+                    <ModalTaskAdded />
+
+                    // setTimeout(() => {
+
+                    // }, 3000);
+                }
+
             </div >
         </header >
     )

@@ -7,6 +7,7 @@ import taskContext from './context/taskContext'
 import ModalDeleteTask from './components/ModalDeleteTask'
 import { Josefin_Sans } from '@next/font/google'
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'
+import ModalTaskAdded from './components/ModalTaskAdded'
 
 const josefin = Josefin_Sans({
     weight: ["300", "400", "500", "700"],
@@ -14,7 +15,7 @@ const josefin = Josefin_Sans({
 })
 const HomePage = () => {
     const [modal, setModal] = useState(false)
-    const { dbTasks, handleUpdateDragAndDrop, current, setCurrent, pendingTask, tasksDone, filteredData } = useContext(taskContext)
+    const { handleUpdateDragAndDrop, current, setCurrent, pendingTask, tasksDone, filteredData } = useContext(taskContext)
     return (
         <DragDropContext onDragEnd={result => handleUpdateDragAndDrop(result)}>
             <div className={`dark:bg-bodyDark dark:text-textDark bg-bodyLight text-textLight ${josefin.className} transition-colors duration-200  min-h-screen w-full h-full pb-24`}>

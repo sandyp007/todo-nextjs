@@ -5,9 +5,11 @@ import check from './../../assets/icon-check.svg'
 import { AiOutlineClose, AiOutlineCheck } from 'react-icons/ai'
 import { MdModeEditOutline } from 'react-icons/md'
 import Image from 'next/image'
+import ButtonSendTask from './ButtonSendTask'
+import ModalTaskAdded from './ModalTaskAdded'
 const InputTask = ({ isTask = true, children, id, isDone, content }) => {
 
-    const { handleAddTask, handleUpdateTask } = useContext(taskContext)
+    const { handleAddTask, handleUpdateTask, setTaskAdded } = useContext(taskContext)
     const [isCheck, setIsCheck] = useState(isDone)
     const [task, setTask] = useState("")
     const [modalTask, setModalTask] = useState(false)
@@ -23,7 +25,14 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
         } else {
             handleAddTask(task)
             setTask('')
+
+            setTimeout(() => {
+                setTaskAdded(false)
+
+            }, 5000);
+
         }
+
     }
 
     const handleChange = (e) => {
@@ -71,7 +80,9 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
                 :
                 <form className='dark:bg-containerDark dark:text-textDark bg-containerLight text-textLight w-full flex items-center justify-between rounded-md overflow-hidden transition-colors duration-300 animate-tasksAnimate mb-8' onSubmit={handleSubmit}>
                     <input type='button' className={`w-6 h-6 rounded-full inline-block ml-4 border-textLight bg-containerLight dark:bg-containerDark border-[1px] transition-colors duration-300`} disabled />
-                    <input onChange={(e) => handleChange(e)} type="text" onClick={() => setIsEdit(false)} className='dark:bg-containerDark dark:text-textDark bg-containerLight text-textLight w-[calc(100%-3rem)] py-4 px-3 text-xs outline-none transition-colors duration-300' value={task} placeholder='Create a new task...' />
+                    <input onChange={(e) => handleChange(e)}
+                        type="text" className='dark:bg-containerDark dark:text-textDark bg-containerLight text-textLight w-[calc(100%-8rem)] py-4 px-3 text-xs outline-none transition-colors duration-300' value={task} placeholder='Create a new task...' />
+                    <ButtonSendTask handleSubmit={handleSubmit} setTaskAdded={setTaskAdded} />
                 </form>
             }
         </>

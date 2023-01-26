@@ -3,6 +3,7 @@ import { createContext, useState, useEffect } from "react"
 
 const taskContext = createContext()
 const TaskProvider = ({ children }) => {
+    const [taskAdded, setTaskAdded] = useState(false)
 
     let localComments
     if (typeof window !== "undefined") {
@@ -87,7 +88,7 @@ const TaskProvider = ({ children }) => {
 
     }
 
-    const data = { dbTasks, handleUpdateDragAndDrop, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData }
+    const data = { dbTasks, handleUpdateDragAndDrop, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData, taskAdded, setTaskAdded }
     return (<taskContext.Provider value={data}>
         {children}
     </taskContext.Provider>)
