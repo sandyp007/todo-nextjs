@@ -6,8 +6,6 @@ const TaskProvider = ({ children }) => {
 
     let localComments
     if (typeof window !== "undefined") {
-        // Perform localStorage action
-        //localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
         localComments = JSON.parse(localStorage.getItem('dbTasks'))
     }
 
@@ -34,13 +32,8 @@ const TaskProvider = ({ children }) => {
         setDbTasks([...dbTasks, newTask])
     }
 
-    const handleDeleteTask = (id, type) => {
+    const handleDeleteTask = (id, type) => type === 'all' ? setDbTasks(dbTasks.filter(el => el.isDone !== true)) : setDbTasks(dbTasks.filter(el => el.id !== id))
 
-        type === 'all' ? setDbTasks(dbTasks.filter(el => el.isDone !== true)) : setDbTasks(dbTasks.filter(el => el.id !== id))
-        // const filterID = dbTasks.filter(el => el.id !== id)
-
-        // setDbTasks(filterID)
-    }
 
 
     const handleUpdateTask = (id, status, type, content) => {
@@ -58,25 +51,17 @@ const TaskProvider = ({ children }) => {
 
     }
     const getFilter = () => {
-        if (current === 'all' || current === '') {
-            return dbTasks
-        }
+        if (current === 'all' || current === '') return dbTasks
 
-        if (current === 'active') {
-            return pendingTask
-        }
+        if (current === 'active') return pendingTask
 
-        if (current === 'completed') {
-            return tasksDone
-        }
+        if (current === 'completed') return tasksDone
     }
 
     const filteredData = getFilter()
 
-    if (typeof window !== "undefined") {
-        // Perform localStorage action
-        localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
-    }
+    if (typeof window !== "undefined") localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
+
 
     const reorderData = (list, startIndex, endIndex) => {
         const result = [...list]
@@ -90,21 +75,18 @@ const TaskProvider = ({ children }) => {
 
 
     const handleUpdateDragAndDrop = result => {
-        //console.info(result)
         const { destination, source } = result
 
         if (!destination) return
 
         if (source.index === destination.index && source.droppableId === destination.droppableId) return
 
-
         current === 'all' && setDbTasks(prevTasks => reorderData(prevTasks, source.index, destination.index))
         current === 'active' && setPendingTask(prevTasks => reorderData(prevTasks, source.index, destination.index))
         current === 'completed' && setTasksDone(prevTasks => reorderData(prevTasks, source.index, destination.index))
 
-        // setDbTasks(prevTasks => reorderData(prevTasks, source.index, destination.index))
-
     }
+
     const data = { dbTasks, handleUpdateDragAndDrop, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData }
     return (<taskContext.Provider value={data}>
         {children}
