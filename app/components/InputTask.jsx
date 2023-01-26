@@ -83,7 +83,7 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
                 </div >
                 :
                 // <form className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-full flex items-center justify-between rounded-md overflow-hidden transition-all duration-300 animate-tasksAnimate`} onSubmit={handleSubmit}>
-                <form className='dark:bg-containerDark dark:text-textDark bg-containerLight text-textLight w-full flex items-center justify-between rounded-md overflow-hidden transition-all duration-300 animate-tasksAnimate' onSubmit={handleSubmit}>
+                <form className='dark:bg-containerDark dark:text-textDark bg-containerLight text-textLight w-full flex items-center justify-between rounded-md overflow-hidden transition-all duration-300 animate-tasksAnimate mb-8' onSubmit={handleSubmit}>
                     <input type='button' className={`bg-white w-6 h-6 rounded-full inline-block ml-4 border-textLight bg-containerLight dark:bg-containerDark border-[1px] transition-all duration-300`} disabled />
                     {/* <input onChange={(e) => handleChange(e)} type="text" onClick={() => setIsEdit(false)} className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} w-[calc(100%-3rem)] py-4 px-3 text-xs outline-none transition-all duration-300`} value={task} placeholder='Create a new task...' /> */}
                     <input onChange={(e) => handleChange(e)} type="text" onClick={() => setIsEdit(false)} className='dark:bg-containerDark dark:text-textDark bg-containerLight text-textLight w-[calc(100%-3rem)] py-4 px-3 text-xs outline-none transition-all duration-300' value={task} placeholder='Create a new task...' />

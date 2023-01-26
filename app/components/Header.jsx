@@ -32,7 +32,7 @@ const HeaderComponent = () => {
     }
     return (
         // <header className={`${DarkTheme ? 'bg-mobileDark md:bg-desktopDark' : ' bg-mobileLight md:bg-desktopLight'} bg-cover transition-all duration-500 bg-cover bg-no-repeat h-[30vh] w-full font-bold flex flex-col items-center`}>
-        <header className='dark:bg-mobileDark dark:md:bg-desktopDark bg-mobileLight md:bg-desktopLight transition-all duration-500 bg-cover bg-no-repeat h-[30vh] w-full font-bold flex flex-col items-center' >
+        <header className='dark:bg-mobileDark dark:md:bg-desktopDark bg-mobileLight md:bg-desktopLight transition-all duration-500 bg-cover bg-no-repeat min-h-[30vh] w-full font-bold flex flex-col items-center' >
             <div className='flex flex-col justify-between items-center w-[90%] mt-12 md:max-w-2xl' >
                 <div className='flex justify-between items-center w-full mb-4 '>
                     <h1 className='tracking-[.5rem] text-3xl text-containerLight'>TODO</h1>

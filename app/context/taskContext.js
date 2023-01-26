@@ -78,7 +78,34 @@ const TaskProvider = ({ children }) => {
         localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
     }
 
-    const data = { dbTasks, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData }
+    const reorderData = (list, startIndex, endIndex) => {
+        const result = [...list]
+
+        const [removed] = result.splice(startIndex, 1)
+
+        result.splice(endIndex, 0, removed)
+
+        return result
+    }
+
+
+    const handleUpdateDragAndDrop = result => {
+        //console.info(result)
+        const { destination, source } = result
+
+        if (!destination) return
+
+        if (source.index === destination.index && source.droppableId === destination.droppableId) return
+
+
+        current === 'all' && setDbTasks(prevTasks => reorderData(prevTasks, source.index, destination.index))
+        current === 'active' && setPendingTask(prevTasks => reorderData(prevTasks, source.index, destination.index))
+        current === 'completed' && setTasksDone(prevTasks => reorderData(prevTasks, source.index, destination.index))
+
+        // setDbTasks(prevTasks => reorderData(prevTasks, source.index, destination.index))
+
+    }
+    const data = { dbTasks, handleUpdateDragAndDrop, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData }
     return (<taskContext.Provider value={data}>
         {children}
     </taskContext.Provider>)
