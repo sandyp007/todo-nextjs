@@ -4,11 +4,11 @@ import ThemeContext from '../context/themeConttext'
 
 const ModalDeleteTask = ({ setModalTask, id, type, setModal }) => {
     const { handleDeleteTask } = useContext(taskContext)
-    const { DarkTheme } = useContext(ThemeContext)
+    // const { DarkTheme } = useContext(ThemeContext)
     return (
         <div className='bg-[#2c2c2c9f] fixed z-50 top-0 left-0 h-[100vh] w-full flex items-center justify-center'>
             {/* <div className='absolute rounded-2xl flex flex-col items-center justify-center bg-white p-7 w-96 '> */}
-            <div className={`${DarkTheme ? 'bg-[#25273c] text-white' : 'bg-white text-[#25273c]'} absolute rounded-2xl flex flex-col items-center justify-center bg-white p-7 w-[95%]`}>
+            <div className='dark:bg-containerDark dark:text-textDark bg-containerLight text-textLight absolute rounded-2xl flex flex-col items-center justify-center bg-white p-7 w-[95%]'>
                 <h1 className='text-3xl font-bold'>{type === 'one' ? 'Delete Task' : 'Delete All Task'}</h1>
                 <p>
                     {type === 'one' ? "Are you sure you want to delete this taks? This will remove the task and can't be undone." : "Are you sure you want to delete all taks? This will remove the task and can't be undone."}

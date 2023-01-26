@@ -11,10 +11,12 @@ export default function RootLayout({ children }) {
       {/* <ThemeProvider> */}
       <TaskProvider>
         {/* <body className="h-full"> */}
-        <body>
+        <body className="dark:bg-bodyDark bg-bodyLight">
           {/* <ThemeScriptTag /> */}
+          <main >
+            {children}
+          </main>
 
-          {children}
         </body>
       </TaskProvider>
       {/* </ThemeProvider> */}
