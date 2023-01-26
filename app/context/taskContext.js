@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react"
 
 const taskContext = createContext()
 const TaskProvider = ({ children }) => {
-    const [taskAdded, setTaskAdded] = useState({ status: false, type: null, message: null })
+    const [taskAdded, setTaskAdded] = useState({ status: false, type: null, message: '' })
 
     let localComments
     if (typeof window !== "undefined") {

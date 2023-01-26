@@ -18,7 +18,8 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (task.trim() === '' || task == '') {
-            handleShowTemporalModal('error', 'write a valid task')
+            setTask('')
+            handleShowTemporalModal('error', 'Write a valid task')
             return
         }
         if (isEdit && task !== '') {
