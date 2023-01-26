@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import taskContext from '../context/taskContext'
 
-const ModalTaskAdded = () => {
+const ModalTaskAdded = ({ bg, text }) => {
+
+    const { taskAdded } = useContext(taskContext)
     return (
-        <div className='text-bodyLight bg-[#187949ea] px-4 py-2 rounded-md mb-4'>Task added succesfully</div>
+        <div className={`text-bodyLight bg-[#187949ea] ${taskAdded.type === 'error' ? 'bg-red-400' : ''} px-4 py-2 rounded-md mb-12`}>{
+            taskAdded.message
+        }</div>
     )
 }
 

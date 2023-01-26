@@ -9,7 +9,7 @@ import ButtonSendTask from './ButtonSendTask'
 import ModalTaskAdded from './ModalTaskAdded'
 const InputTask = ({ isTask = true, children, id, isDone, content }) => {
 
-    const { handleAddTask, handleUpdateTask, setTaskAdded } = useContext(taskContext)
+    const { handleAddTask, handleUpdateTask, setTaskAdded, handleShowTemporalModal } = useContext(taskContext)
     const [isCheck, setIsCheck] = useState(isDone)
     const [task, setTask] = useState("")
     const [modalTask, setModalTask] = useState(false)
@@ -17,19 +17,25 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (task === '') return
+        if (task.trim() === '' || task == '') {
+            handleShowTemporalModal('error', 'write a valid task')
+            return
+        }
         if (isEdit && task !== '') {
+            handleShowTemporalModal('edit', 'task updated succesfully')
             setIsEdit(false)
             setIsCheck(false)
             handleUpdateTask(id, isCheck, 'edit', task)
         } else {
+            handleShowTemporalModal('add', 'task added succesfully')
+            //setTaskAdded(true)
             handleAddTask(task)
             setTask('')
 
-            setTimeout(() => {
-                setTaskAdded(false)
+            // setTimeout(() => {
+            //     setTaskAdded(false)
 
-            }, 5000);
+            // }, 5000);
 
         }
 
@@ -58,7 +64,9 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
                     {isEdit
                         ?
                         <>
-                            <input autoFocus className='dark:bg-[#2f3041] dark:text-bodyLight bg-bodyLight text-textLight text-sm pr-2 outline-none break-all w-[calc(100%-7rem)]' onChange={e => handleChange(e)} type="text" value={task} />
+                            <form onSubmit={(e) => handleSubmit(e)} className='dark:bg-[#2f3041] dark:text-bodyLight bg-bodyLight text-textLight text-sm pr-2 outline-none break-all w-[calc(100%-7rem)]'>
+                                <input autoFocus className='dark:bg-[#2f3041] dark:text-bodyLight bg-bodyLight text-textLight text-sm pr-2 outline-none break-all w-[calc(100%-7rem)]' onChange={e => handleChange(e)} type="text" value={task} />
+                            </form>
                             <AiOutlineCheck onClick={handleSubmit} width={20} height={20} alt='edit task button' className='ml-2 md:group-hover:cursor-pointer transition-all duration-500' />
 
                         </>

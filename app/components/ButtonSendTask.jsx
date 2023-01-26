@@ -5,9 +5,9 @@ const ButtonSendTask = ({ handleSubmit }) => {
     const { setTaskAdded } = useContext(taskContext)
 
     return (
-        <button className='mr-4' onClick={() => {
-            setTaskAdded(true)
-            handleSubmit()
+        <button className='mr-4' onClick={(e) => {
+            // setTaskAdded(true)
+            handleSubmit(e)
         }}>
             Add Task
         </button>

@@ -15,7 +15,7 @@ const josefin = Josefin_Sans({
 })
 const HomePage = () => {
     const [modal, setModal] = useState(false)
-    const { handleUpdateDragAndDrop, current, setCurrent, pendingTask, tasksDone, filteredData } = useContext(taskContext)
+    const { dbTasks, handleUpdateDragAndDrop, current, setCurrent, pendingTask, tasksDone, filteredData } = useContext(taskContext)
     return (
         <DragDropContext onDragEnd={result => handleUpdateDragAndDrop(result)}>
             <div className={`dark:bg-bodyDark dark:text-textDark bg-bodyLight text-textLight ${josefin.className} transition-colors duration-200  min-h-screen w-full h-full pb-24`}>
@@ -41,7 +41,7 @@ const HomePage = () => {
                         }
                     </Droppable>
                     <div className='dark:bg-containerDark bg-containerLight w-full flex items-center justify-between p-4 md:py-5 animate-tasksAnimate transition-colors duration-200 border-t-[.15px] border-[#e0dede49]'>
-                        {current === 'all' ? <><p className='dark:text-textDark text-inherit dark:md:hover:text-gray-200 md:hover:text-gray-800 cursor-pointer text-sm'> All Items</p> </> : null}
+                        {current === 'all' ? <><p className='dark:text-textDark text-inherit dark:md:hover:text-gray-200 md:hover:text-gray-800 cursor-pointer text-sm'> All Items ({dbTasks.length})</p> </> : null}
                         {current === 'active' ? <><p className='dark:text-textDark text-inherit dark:md:hover:text-gray-200 md:hover:text-gray-800 cursor-pointer text-sm'>{pendingTask.length} items left</p> </> : null}
                         {current === 'completed' ? <><p className='dark:text-textDark text-inherit dark:md:hover:text-gray-200 md:hover:text-gray-800 cursor-pointer text-sm'>{tasksDone.length} items completed</p> </> : null}
                         <div className='w-full mt-4 py-4 items-center justify-center m-auto rounded-md  md:max-w-2xl  md:py-5 hidden lg:flex md:w-auto md:m-0 md:hover:text-gray-800 text-sm md:self-center transition-colors duration-200 '>

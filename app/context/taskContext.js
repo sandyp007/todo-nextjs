@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react"
 
 const taskContext = createContext()
 const TaskProvider = ({ children }) => {
-    const [taskAdded, setTaskAdded] = useState(false)
+    const [taskAdded, setTaskAdded] = useState({ status: false, type: null, message: null })
 
     let localComments
     if (typeof window !== "undefined") {
@@ -88,7 +88,21 @@ const TaskProvider = ({ children }) => {
 
     }
 
-    const data = { dbTasks, handleUpdateDragAndDrop, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData, taskAdded, setTaskAdded }
+    const handleShowTemporalModal = (type, message) => {
+
+        console.info(type, 'accion')
+
+        setTaskAdded({ status: true, type: type, message: message })
+
+
+        setTimeout(() => {
+            setTaskAdded({ status: false, type: null, message: null })
+
+        }, 3000);
+
+    }
+
+    const data = { dbTasks, handleUpdateDragAndDrop, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData, taskAdded, setTaskAdded, handleShowTemporalModal }
     return (<taskContext.Provider value={data}>
         {children}
     </taskContext.Provider>)
