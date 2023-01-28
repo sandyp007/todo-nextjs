@@ -1,14 +1,8 @@
-import React, { useContext } from 'react'
-import taskContext from '../context/taskContext'
+import React from 'react'
 
 const ButtonSendTask = ({ handleSubmit }) => {
-    const { setTaskAdded } = useContext(taskContext)
-
     return (
-        <button className='mr-4' onClick={(e) => {
-            // setTaskAdded(true)
-            handleSubmit(e)
-        }}>
+        <button className='mr-4' onClick={(e) => handleSubmit(e)}>
             Add Task
         </button>
     )

@@ -16,6 +16,7 @@ const josefin = Josefin_Sans({
 const HomePage = () => {
     const [modal, setModal] = useState(false)
     const { dbTasks, handleUpdateDragAndDrop, current, setCurrent, pendingTask, tasksDone, filteredData } = useContext(taskContext)
+
     return (
         <DragDropContext onDragEnd={result => handleUpdateDragAndDrop(result)}>
             <div className={`dark:bg-bodyDark dark:text-textDark bg-bodyLight text-textLight ${josefin.className} transition-colors duration-200  min-h-screen w-full h-full pb-24`}>
@@ -37,6 +38,7 @@ const HomePage = () => {
 
                                     <p className='py-4 text-center'>{`${current === 'completed' ? 'You have not completed any tasks 🥹' : 'Add a new task '}`}</p>
                                 }
+                                {/* {droppableProvided.placeholder} */}
                             </div>
                         }
                     </Droppable>

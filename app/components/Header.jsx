@@ -9,11 +9,9 @@ import InputTask from './InputTask'
 import ModalTaskAdded from './ModalTaskAdded'
 const HeaderComponent = () => {
     const [darkTheme, setDarkTheme] = useState(false)
-
     useEffect(() => {
         if (localStorage.getItem("theme") === 'true') {
             setDarkTheme(true)
-
             document.documentElement.classList.add('dark')
         } else {
             setDarkTheme(false)
@@ -42,7 +40,7 @@ const HeaderComponent = () => {
                     <Image onClick={handleTheme} className='md:cursor-pointer' src={darkTheme ? sun : moon} width={30} height={20} alt='icon_moon_darkMode' />
                 </div >
                 <InputTask isTask={false} />
-                {taskAdded.status && <ModalTaskAdded />}
+                {taskAdded.status === true && <ModalTaskAdded />}
 
             </div >
         </header >

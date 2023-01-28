@@ -14,32 +14,35 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
     const [task, setTask] = useState("")
     const [modalTask, setModalTask] = useState(false)
     const [isEdit, setIsEdit] = useState(false)
-
+    const [textEdited, setTextEdited] = useState('')
     const handleSubmit = (e) => {
         e.preventDefault()
         if (task.trim() === '' || task == '') {
             setTask('')
             handleShowTemporalModal('error', 'Write a valid task')
+
             return
         }
-        if (isEdit && task !== '') {
-            handleShowTemporalModal('edit', 'task updated succesfully')
-            setIsEdit(false)
-            setIsCheck(false)
-            handleUpdateTask(id, isCheck, 'edit', task)
+        if (isEdit) {
+
+            if (textEdited !== content && textEdited !== '') {
+                handleShowTemporalModal('edit', 'task updated succesfully')
+                setIsEdit(false)
+                setIsCheck(false)
+                handleUpdateTask(id, isCheck, 'edit', textEdited)
+            } else {
+                console.info("es igual")
+                handleShowTemporalModal('error', "you not are write nothing")
+            }
         } else {
             handleShowTemporalModal('add', 'task added succesfully')
-            //setTaskAdded(true)
             handleAddTask(task)
             setTask('')
-
-            // setTimeout(() => {
-            //     setTaskAdded(false)
-
-            // }, 5000);
-
         }
 
+        // setTimeout(() => {
+        //     setTaskAdded({ status: false })
+        // }, 3000);
     }
 
     const handleChange = (e) => {
@@ -66,7 +69,7 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
                         ?
                         <>
                             <form onSubmit={(e) => handleSubmit(e)} className='dark:bg-[#2f3041] dark:text-bodyLight bg-bodyLight text-textLight text-sm pr-2 outline-none break-all w-[calc(100%-7rem)]'>
-                                <input autoFocus className='dark:bg-[#2f3041] dark:text-bodyLight bg-bodyLight text-textLight text-sm pr-2 outline-none break-all w-[calc(100%-7rem)]' onChange={e => handleChange(e)} type="text" value={task} />
+                                <input autoFocus onBlur={() => setIsEdit(false)} className='dark:bg-[#2f3041] dark:text-bodyLight bg-bodyLight text-textLight text-sm pr-2 outline-none break-all w-[calc(100%-7rem)]' onChange={e => setTextEdited(e.target.value)} type="text" value={textEdited === '' ? task : textEdited} />
                             </form>
                             <AiOutlineCheck onClick={handleSubmit} width={20} height={20} alt='edit task button' className='ml-2 md:group-hover:cursor-pointer transition-all duration-500' />
 

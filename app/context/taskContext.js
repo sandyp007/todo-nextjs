@@ -89,17 +89,10 @@ const TaskProvider = ({ children }) => {
     }
 
     const handleShowTemporalModal = (type, message) => {
-
-        console.info(type, 'accion')
-
         setTaskAdded({ status: true, type: type, message: message })
-
-
         setTimeout(() => {
             setTaskAdded({ status: false, type: null, message: null })
-
         }, 3000);
-
     }
 
     const data = { dbTasks, handleUpdateDragAndDrop, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData, taskAdded, setTaskAdded, handleShowTemporalModal }
