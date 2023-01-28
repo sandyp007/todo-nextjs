@@ -84,6 +84,7 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
                                     setIsEdit(true)
                                     setTask(content)
                                 }} />
+
                         </>
                     }
 

@@ -15,7 +15,7 @@ const josefin = Josefin_Sans({
 })
 const HomePage = () => {
     const [modal, setModal] = useState(false)
-    const { dbTasks, handleUpdateDragAndDrop, current, setCurrent, pendingTask, tasksDone, filteredData } = useContext(taskContext)
+    const { dbTasks, handleUpdateDragAndDrop, current, setCurrent, pendingTask, tasksDone, filteredData, taskAdded } = useContext(taskContext)
 
     return (
         <DragDropContext onDragEnd={result => handleUpdateDragAndDrop(result)}>

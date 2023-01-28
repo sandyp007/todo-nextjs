@@ -40,7 +40,13 @@ const HeaderComponent = () => {
                     <Image onClick={handleTheme} className='md:cursor-pointer' src={darkTheme ? sun : moon} width={30} height={20} alt='icon_moon_darkMode' />
                 </div >
                 <InputTask isTask={false} />
-                {taskAdded.status === true && <ModalTaskAdded />}
+                {taskAdded.status === true && <>
+
+                    <ModalTaskAdded />
+                    {window.scrollTo({ top: 0, behavior: 'smooth' })}
+
+                </>
+                }
 
             </div >
         </header >
