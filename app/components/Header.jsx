@@ -1,12 +1,9 @@
 'use client'
 import Image from 'next/image'
-import React, { useContext, useEffect, useState } from 'react'
-import taskContext from '../context/taskContext'
-import ThemeContext from '../context/themeConttext'
+import React, { useEffect, useState } from 'react'
 import moon from './../../assets/icon-moon.svg'
 import sun from './../../assets/icon-sun.svg'
 import InputTask from './InputTask'
-import ModalTaskAdded from './ModalTaskAdded'
 const HeaderComponent = () => {
     const [darkTheme, setDarkTheme] = useState(false)
     useEffect(() => {
@@ -31,21 +28,14 @@ const HeaderComponent = () => {
         }
     }
 
-    // const { taskAdded } = useContext(taskContext)
-    // const { handleShowTemporalModal } = useContext(taskContext)
-
-    // const { status } = handleShowTemporalModal()
-    // console.info(status, "status function")
     return (
-        <header className='dark:bg-mobileDark dark:md:bg-desktopDark bg-mobileLight md:bg-desktopLight transition-all duration-500 bg-cover bg-no-repeat min-h-[20vh] w-full font-bold flex flex-col items-center' >
+        <header className='dark:bg-mobileDark dark:md:bg-desktopDark bg-mobileLight md:bg-desktopLight transition-all duration-200 bg-cover bg-no-repeat min-h-[20vh] w-full flex flex-col items-center' >
             <div className='flex flex-col justify-between items-center w-[90%] mt-12 md:max-w-2xl mb-12' >
                 <div className='flex justify-between items-center w-full mb-4 '>
-                    <h1 className='tracking-[.5rem] text-3xl text-containerLight'>TODO</h1>
+                    <h1 className='tracking-[.5rem] text-3xl md:text-4xl text-containerLight font-bold'>TODO</h1>
                     <Image onClick={handleTheme} className='md:cursor-pointer' src={darkTheme ? sun : moon} width={30} height={20} alt='icon_moon_darkMode' />
                 </div >
                 <InputTask isTask={false} />
-                {/* {status && <ModalTaskAdded />} */}
-
             </div >
         </header >
     )

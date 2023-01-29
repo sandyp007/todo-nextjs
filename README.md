@@ -8,12 +8,13 @@
 ![](./public/mobileDesignLightMode.jpg)
 
 ## Desktop Design
-
+![](./public/desktopDarkMode.png)
+![](./public/desktopLightMode.png)
 
 ### Links
 
 - Solution URL: [https://www.frontendmentor.io/solutions/todo-list-with-react-tailwind-css-n7Rro5iMZ3](https://www.frontendmentor.io/solutions/todo-list-with-react-tailwind-css-n7Rro5iMZ3)
-- Live Site URL: [https://react-todo-list-challenge.netlify.app/](https://react-todo-list-challenge.netlify.app/)
+- Live Site URL: [https://todo-app-next-three.vercel.app/](https://todo-app-next-three.vercel.app/)
 
 ```js
 const showMessage = () => {

@@ -12,22 +12,7 @@ module.exports = {
       'desktopLight': "url('./../assets/bg-desktop-light.jpg')",
       'mobileDark': "url('./../assets/bg-mobile-dark.jpg')",
       'mobileLight': "url('./../assets/bg-mobile-light.jpg')",
-
     },
-    // extend: {
-
-    //   colors: {
-    //     'bodyDark': "#171723",
-    //     'bodyLight': '#F8F8FA',
-    //     'containerDark': '#25273C',
-    //     'containerLight': '#FFFFFF',
-    //     'textDark': "#CACDE8",
-    //     'textLight': '#5D5E6F',
-    //     'completed': '#4d66de',
-    //     'blueGradient': '#57ddff',
-    //     'pinkGradient': '#c058f3'
-    //   }
-    // },
     extend: {
       keyframes: {
         comeIn: {
@@ -47,7 +32,7 @@ module.exports = {
         }
       },
       animation: {
-        tasksAnimate: 'comeIn 1s ease-in',
+        tasksAnimate: 'comeIn .75s ease-in',
       },
       colors: {
         'bodyDark': "#171723",
@@ -56,9 +41,8 @@ module.exports = {
         'containerLight': '#FFFFFF',
         'textDark': "#CACDE8",
         'textLight': '#5D5E6F',
-        'completed': '#4d66de',
-        'blueGradient': 'rgb(87, 221, 255)',
-        'pinkGradient': 'rgb(192, 88, 243)'
+        'active': '#3a7bfd',
+        'text-opacity': 'rgb(75,85,99)',
       }
     }
   },

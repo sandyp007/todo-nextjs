@@ -3,8 +3,6 @@ import { createContext, useState, useEffect } from "react"
 
 const taskContext = createContext()
 const TaskProvider = ({ children }) => {
-    // const [taskAdded, setTaskAdded] = useState({ status: false, type: null, message: '' })
-
     let localComments
     if (typeof window !== "undefined") {
         localComments = JSON.parse(localStorage.getItem('dbTasks'))
@@ -88,30 +86,7 @@ const TaskProvider = ({ children }) => {
 
     }
 
-    const handleSelectAllTask = () => {
-        console.info('all task selected')
-        let allTasks = dbTasks.map(el =>
-
-        ({
-            ...el,
-            isDone: true
-        })
-        )
-
-        // console.info(allTasks)
-    }
-
-    const handleShowTemporalModal = (type, message) => {
-        // setTaskAdded({ status: true, type: type, message: message })
-        // setTimeout(() => {
-        //     setTaskAdded({ status: false, type: null, message: null })
-        // }, 3000);
-        // console.info(type, message)
-
-        return { status: true, type: type, message: message }
-    }
-
-    const data = { dbTasks, handleUpdateDragAndDrop, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData, handleShowTemporalModal, handleSelectAllTask }
+    const data = { dbTasks, handleUpdateDragAndDrop, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData }
     return (<taskContext.Provider value={data}>
         {children}
     </taskContext.Provider>)
