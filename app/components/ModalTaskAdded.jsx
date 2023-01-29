@@ -1,14 +1,16 @@
 import React, { useContext } from 'react'
 import taskContext from '../context/taskContext'
 
-const ModalTaskAdded = () => {
+const ModalTaskAdded = ({ type, message }) => {
 
-    const { taskAdded } = useContext(taskContext)
+    const { handleShowTemporalModal } = useContext(taskContext)
 
-    console.info(taskAdded)
+    // const { type, message } = handleShowTemporalModal()
+
+    // console.info(handleShowTemporalModal())
     return (
-        <div className={`text-bodyLight ${taskAdded.type === 'error' ? 'bg-red-500' : ''} ${taskAdded.type === 'add' ? 'bg-green-500' : ''} ${taskAdded.type === 'edit' ? 'bg-[#d3b530ea]' : ''} px-4 py-2 rounded-md mb-12`}>{
-            taskAdded.message
+        <div className={`text-bodyLight ${type === 'error' ? 'bg-red-500' : ''} ${type === 'add' ? 'bg-green-500' : ''} ${type === 'edit' ? 'bg-[#d3b530ea]' : ''} px-4 py-2 rounded-md mb-0 w-full text-center`}>{
+            message
         }</div>
     )
 }

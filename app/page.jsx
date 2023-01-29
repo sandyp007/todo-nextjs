@@ -24,7 +24,7 @@ const HomePage = () => {
                 <div className='dark:bg-containerDark dark:text-textDark bg-bodyLight text-textLight w-[90%] m-auto -mt-6 overflow-hidden rounded-md flex items-center justify-center divide-[#d1cece] flex-col transition-all duration-200 md:max-w-2xl' >
                     <Droppable droppableId='tasks'>
                         {(droppableProvided) =>
-                            <div {...droppableProvided.droppableProps} ref={droppableProvided.innerRef} className='w-full divide-y flex flex-col'>
+                            <div {...droppableProvided.droppableProps} ref={droppableProvided.innerRef} className='w-full divide-y flex flex-col flex-wrap'>
                                 {filteredData.length > 0 ? filteredData.map((tsk, index) =>
                                     <Draggable key={tsk.id} draggableId={tsk.id} index={index}>
                                         {(draggableProvided) =>
