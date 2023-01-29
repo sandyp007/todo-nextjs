@@ -1,9 +1,14 @@
 # TODO List | _FrontendMentor_
 
-### Screenshot
+# Screenshot 
 
-![](./src/assets/todo_screen.png)
-![](./src/assets/todo_screen_dark.png)
+## Mobile Design
+
+![](./public/mobileDesignDarkMode.jpg)
+![](./public/mobileDesignLightMode.jpg)
+
+## Desktop Design
+
 
 ### Links
 
