@@ -25,7 +25,7 @@ const HomePage = () => {
                     <Droppable droppableId='tasks'>
                         {(droppableProvided) =>
                             <div {...droppableProvided.droppableProps} ref={droppableProvided.innerRef} className='w-full divide-y flex flex-col flex-wrap'>
-                                {filteredData.length > 0 ? filteredData.reverse().map((tsk, index) =>
+                                {filteredData.length > 0 ? filteredData.map((tsk, index) =>
                                     <Draggable key={tsk.id} draggableId={tsk.id} index={index}>
                                         {(draggableProvided) =>
                                             <span ref={draggableProvided.innerRef} {...draggableProvided.draggableProps} {...draggableProvided.dragHandleProps}>

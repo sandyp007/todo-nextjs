@@ -30,7 +30,7 @@ const TaskProvider = ({ children }) => {
             content: task,
             isDone: false
         }
-        setDbTasks([...dbTasks, newTask])
+        setDbTasks([newTask, ...dbTasks])
     }
 
     const handleDeleteTask = (id, type) => type === 'all' ? setDbTasks(dbTasks.filter(el => el.isDone !== true)) : setDbTasks(dbTasks.filter(el => el.id !== id))
@@ -98,7 +98,7 @@ const TaskProvider = ({ children }) => {
         })
         )
 
-        console.info(allTasks)
+        // console.info(allTasks)
     }
 
     const handleShowTemporalModal = (type, message) => {
@@ -106,7 +106,7 @@ const TaskProvider = ({ children }) => {
         // setTimeout(() => {
         //     setTaskAdded({ status: false, type: null, message: null })
         // }, 3000);
-        console.info(type, message)
+        // console.info(type, message)
 
         return { status: true, type: type, message: message }
     }
