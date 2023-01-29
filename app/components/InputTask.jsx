@@ -64,7 +64,7 @@ const InputTask = ({ isTask = true, children, id, isDone, content }) => {
     const handleChange = (e) => {
         setTask(e.target.value)
 
-        console.info(content + e.target.value)
+        // console.info(content + e.target.value)
         if (content + e.target.value === task) {
             setIsEdit(false)
         }

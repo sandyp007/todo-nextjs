@@ -25,7 +25,7 @@ const HomePage = () => {
                     <Droppable droppableId='tasks'>
                         {(droppableProvided) =>
                             <div {...droppableProvided.droppableProps} ref={droppableProvided.innerRef} className='w-full divide-y flex flex-col flex-wrap'>
-                                {filteredData.length > 0 ? filteredData.map((tsk, index) =>
+                                {filteredData.length > 0 ? filteredData.reverse().map((tsk, index) =>
                                     <Draggable key={tsk.id} draggableId={tsk.id} index={index}>
                                         {(draggableProvided) =>
                                             <span ref={draggableProvided.innerRef} {...draggableProvided.draggableProps} {...draggableProvided.dragHandleProps}>
@@ -44,14 +44,15 @@ const HomePage = () => {
                     </Droppable>
                     <div className='dark:bg-containerDark bg-containerLight w-full flex items-center justify-between p-4 md:py-5 animate-tasksAnimate transition-colors duration-200 border-t-[.15px] border-[#e0dede49]'>
                         {current === 'all' ? <><p className='dark:text-textDark text-inherit dark:md:hover:text-gray-200 md:hover:text-gray-800 cursor-pointer text-sm'> All Items ({dbTasks.length})</p> </> : null}
-                        {current === 'active' ? <><p className='dark:text-textDark text-inherit dark:md:hover:text-gray-200 md:hover:text-gray-800 cursor-pointer text-sm'>{pendingTask.length} items left</p> </> : null}
-                        {current === 'completed' ? <><p className='dark:text-textDark text-inherit dark:md:hover:text-gray-200 md:hover:text-gray-800 cursor-pointer text-sm'>{tasksDone.length} items completed</p> </> : null}
+                        {current === 'active' ? <><p className='dark:text-textDark text-inherit dark:md:hover:text-gray-200 md:hover:text-gray-800 cursor-pointer text-sm'>{pendingTask.length} Items left</p> </> : null}
+                        {current === 'completed' ? <><p className='dark:text-textDark text-inherit dark:md:hover:text-gray-200 md:hover:text-gray-800 cursor-pointer text-sm'>{tasksDone.length} Items completed</p> </> : null}
                         <div className='w-full mt-4 py-4 items-center justify-center m-auto rounded-md  md:max-w-2xl  md:py-5 hidden lg:flex md:w-auto md:m-0 md:hover:text-gray-800 text-sm md:self-center transition-colors duration-200 '>
                             <p onClick={() => setCurrent('all')} className={`${current === 'all' ? 'text-blue-500  dark:text-blue-500' : 'text-inherit'} dark:md:hover:text-gray-200 md:hover:text-gray-800 cursor-pointer text-sm`}>All</p>
                             <p onClick={() => setCurrent('active')} className={`${current === 'active' ? 'text-blue-500  dark:text-blue-500' : 'text-inherit'} dark:md:hover:text-gray-200 md:hover:text-gray-800 ml-4 mr-4 cursor-pointer`}>Active</p>
                             <p onClick={() => setCurrent('completed')} className={`${current === 'completed' ? 'text-blue-500  dark:text-blue-500' : 'text-inherit'} dark:md:hover:text-gray-200 cursor-pointer`}>Completed</p>
                         </div>
-                        <p className={` dark:text-textDark text-textLight dark:md:hover:text-gray-200 md:hover:text-gray-800  ${tasksDone.length > 0 ? "opacity-100" : "opacity-0"} cursor-pointer text-sm animate-tasksAnimate`} onClick={() => setModal(!modal)}>Clear Completed</p>
+                        {tasksDone.length > 0 && <p className={` dark:text-textDark text-textLight dark:md:hover:text-gray-200 md:hover:text-gray-800  cursor-pointer text-sm animate-tasksAnimate`} onClick={() => setModal(!modal)}>Clear Completed</p>}
+
                     </div>
                 </div >
                 < div className='dark:bg-containerDark dark:text-textDark bg-containerLight text-textLight w-[90%] flex mt-4 py-4 items-center justify-center m-auto rounded-md  mb-8 md:py-5 lg:hidden animate-tasksAnimate transition-colors duration-200 md:max-w-2xl font-bold' >
