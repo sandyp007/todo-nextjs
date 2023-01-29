@@ -13,7 +13,7 @@
 
 ### Links
 
-- Solution URL: [https://www.frontendmentor.io/solutions/todo-list-with-react-tailwind-css-n7Rro5iMZ3](https://www.frontendmentor.io/solutions/todo-list-with-react-tailwind-css-n7Rro5iMZ3)
+- Solution URL: [https://www.frontendmentor.io/solutions/todo-app-with-next-js-and-tailwinds-css-CvSMhnJN3-](https://www.frontendmentor.io/solutions/todo-app-with-next-js-and-tailwinds-css-CvSMhnJN3-)
 - Live Site URL: [https://todo-app-next-three.vercel.app/](https://todo-app-next-three.vercel.app/)
 
 ```js
