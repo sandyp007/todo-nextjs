@@ -12,6 +12,7 @@ const TaskProvider = ({ children }) => {
     const [tasksDone, setTasksDone] = useState([])
     const [pendingTask, setPendingTask] = useState([])
     const [current, setCurrent] = useState('all')
+    const [classDrag, setclassDrag] = useState('animate-tasksAnimate')
 
     useEffect(() => {
         const done = []
@@ -20,6 +21,8 @@ const TaskProvider = ({ children }) => {
 
         setPendingTask(pending)
         setTasksDone(done)
+        if (typeof window !== "undefined") localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
+
     }, [dbTasks])
 
     const handleAddTask = (task) => {
@@ -59,7 +62,6 @@ const TaskProvider = ({ children }) => {
 
     const filteredData = getFilter()
 
-    if (typeof window !== "undefined") localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
 
 
     const reorderData = (list, startIndex, endIndex) => {
@@ -84,9 +86,12 @@ const TaskProvider = ({ children }) => {
         current === 'active' && setPendingTask(prevTasks => reorderData(prevTasks, source.index, destination.index))
         current === 'completed' && setTasksDone(prevTasks => reorderData(prevTasks, source.index, destination.index))
 
+        setclassDrag('animate-tasksAnimate')
     }
 
-    const data = { dbTasks, handleUpdateDragAndDrop, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData }
+    // if (typeof window !== "undefined") localStorage.setItem("dbTasks", JSON.stringify(dbTasks))
+
+    const data = { dbTasks, classDrag, setclassDrag, handleUpdateDragAndDrop, handleAddTask, handleDeleteTask, handleUpdateTask, tasksDone, setTasksDone, pendingTask, setPendingTask, current, setCurrent, filteredData }
     return (<taskContext.Provider value={data}>
         {children}
     </taskContext.Provider>)

@@ -32,7 +32,7 @@ module.exports = {
         }
       },
       animation: {
-        tasksAnimate: 'comeIn .75s ease-in',
+        tasksAnimate: 'comeIn .5s ease-in-out',
       },
       colors: {
         'bodyDark': "#171723",

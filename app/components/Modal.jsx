@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import taskContext from '../context/taskContext'
 
-const ModalDeleteTask = ({ setModalTask, id, type, setModal }) => {
+const Modal = ({ setModalTask, id, type, setModal }) => {
     const { dbTasks, handleDeleteTask } = useContext(taskContext)
 
     const lenghtCompleted = dbTasks.filter(el => el.isDone === true)
@@ -35,4 +35,4 @@ const ModalDeleteTask = ({ setModalTask, id, type, setModal }) => {
     )
 }
 
-export default ModalDeleteTask
+export default Modal
