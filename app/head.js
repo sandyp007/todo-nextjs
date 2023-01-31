@@ -1,4 +1,4 @@
-export default function Head() {
+export default function Head({ color }) {
   return (
     <>
       <title>TODO App</title>
@@ -7,6 +7,7 @@ export default function Head() {
       <meta name="description" content="TODO APP built with next js 13, frontend mentor page challenge" />
       <meta property="og:title" content="TODO APP Frontend Mentor" />
       <meta property="og:description" content="TODO APP built with next js 13, frontend mentor page challenge" />
+
     </>
   )
 }

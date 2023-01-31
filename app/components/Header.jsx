@@ -1,5 +1,4 @@
 'use client'
-import Head from 'next/head'
 import Image from 'next/image'
 import React, { useLayoutEffect, useState } from 'react'
 import moon from './../../assets/icon-moon.svg'
@@ -31,9 +30,10 @@ const HeaderComponent = () => {
 
     return (
         <>
-            <Head>
+            <head>
                 <meta name="theme-color" content={darkTheme ? '#171723' : '#F8F8FA'} />
-            </Head>
+            </head>
+
             <header className='dark:bg-mobileDark dark:md:bg-desktopDark bg-mobileLight md:bg-desktopLight transition-all duration-200 bg-cover bg-no-repeat min-h-[20vh] w-full flex flex-col items-center' >
                 <div className='flex flex-col justify-between items-center w-[90%] mt-12 md:max-w-2xl mb-12' >
                     <div className='flex justify-between items-center w-full mb-4 '>
