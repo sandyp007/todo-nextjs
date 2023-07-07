@@ -17,11 +17,9 @@
 - Live Site URL: [https://todo-app-next-three.vercel.app/](https://todo-app-next-three.vercel.app/)
 
 ```js
-const showMessage = () => {
-  console.info("Happy Coding 💻");
-};
 
-showMessage();
+  console.info("Happy Coding 💻");
+
 ```
 
 ### Built with

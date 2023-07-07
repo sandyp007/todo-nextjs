@@ -4,9 +4,9 @@ export default function Head({ color }) {
       <title>TODO App</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <link rel="icon" href="/favicon.ico" />
-      <meta name="description" content="TODO APP built with next js 13, frontend mentor page challenge" />
-      <meta property="og:title" content="TODO APP Frontend Mentor" />
-      <meta property="og:description" content="TODO APP built with next js 13, frontend mentor page challenge" />
+      <meta name="description" content="A simple task manager made by sandy" />
+      <meta property="og:title" content="Task Manager" />
+      <meta property="og:description" content="A simple task manager made by sandy" />
 
     </>
   )
