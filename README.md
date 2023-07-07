@@ -1,6 +1,5 @@
 <h2 align="center">
   Task Manager
-  <a href="https://aboutmee.vercel.app/" target="_blank">Sandeep.tech</a>
 </h2>
 
 ## Mobile Design
