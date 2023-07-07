@@ -3,12 +3,9 @@
   <a href="https://aboutmee.vercel.app/" target="_blank">Sandeep.tech</a>
 </h2>
 
-# Screenshot 
-
 ## Mobile Design
 <div align="center">
 ![mob](https://github.com/sandyp007/todo-nextjs/assets/108931503/6a9360e0-5e02-4963-afcb-aa75afc4f4bf)
-<br/>
 ![mo](https://github.com/sandyp007/todo-nextjs/assets/108931503/e1e5fc21-6423-4cec-bfec-b432cc9898f9)
 </div>
 
